@@ -1,0 +1,25 @@
+/* styles.css */
+
+/* 색상 적용 */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.card, .section {
+    background-color: var(--card-background);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+.alert {
+    background-color: var(--alert-color);
+    color: #FFFFFF;
+}

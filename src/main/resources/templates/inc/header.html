@@ -4,15 +4,38 @@
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 <body>
-<header th:fragment="menu">
-    <h1>Build-Note</h1>
+<header th:fragment="header">
+    <!-- 상단 로고 + 메뉴 아이콘 -->
+    <div class="header">
+        <div class="logo">MyLogo</div>
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <section id="menuIcon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
+        </div>
+    </div>
+    <!-- 오버레이 (배경 클릭 시 닫힘) -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()">
+        <!--  사이드바 메뉴  -->
+        <div id="sidebar" class="sidebar" onclick="event.stopPropagation();">
+            <!-- 사이드바 내부 내용 -->
+            <h3>메뉴</h3>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">고객센터</a></li>
+                <li><a href="#">로그인</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--
     <ul>
         <li><a href="/static">Index</a></li>
 
-        <!--
             인증 정보 > sec:authentication
             허가 처리 > sec:authorize
-        -->
 
         <th:block sec:authorize="isAnonymous()">
             <li><a href="/join">Join</a></li>
@@ -24,8 +47,8 @@
             <li><a href="/my">My</a></li>
             <li sec:authorize="hasRole('ADMIN')"><a href="/admin">Admin</a></li>
         </th:block>
-
     </ul>
+    -->
 </header>
 </body>
 </html>

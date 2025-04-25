@@ -1,0 +1,19 @@
+/* theme.css */
+
+/* 색상 변수 */
+:root {
+    --background-color: #FFFFFF;
+    --card-background: #F4F6F8;
+    --text-color: #222B2E;
+    --subtext-color: #6B7280;
+    --primary-color: #2563EB;
+    --secondary-color: #1E40AF;
+    --alert-color: #F59E42;
+}
+
+/* 폰트 설정 */
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');*/
+
+/*body {*/
+/*    font-family: 'Roboto', sans-serif;*/
+/*}*/

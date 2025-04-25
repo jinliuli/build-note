@@ -12,4 +12,9 @@ public class MainController {
 
         return "index";
     }
+    @GetMapping("/join")
+    public String join(Model model) {
+
+        return "join";
+    }
 }

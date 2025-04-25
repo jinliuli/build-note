@@ -3,6 +3,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -10,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/").permitAll() //요청하는 URI 패턴과 모든 사람들이 들어와서 볼수있도록
                 .requestMatchers("/login").permitAll()
@@ -19,7 +20,37 @@ public class SecurityConfig {
                 .requestMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated() //나머지 경로 > 인증된 사용자만
         );
+        //CSRF 토큰 해제
+        //http.csrf(auth -> auth.disable());
 
-        return http.build(); // ✅ 필수 리턴
+
+        //커스텀 로그인 설정
+        http.formLogin(auth -> auth
+                .loginPage("/login")//사용자 로그인페이지 URL
+                .defaultSuccessUrl("/")
+                .loginProcessingUrl("/loginok").permitAll()
+        );
+
+
+        return http.build();
+    }
+
+    //BCrypt 암호화 객체
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+
+        return new BCryptPasswordEncoder();
+    }
+
+    //로그아웃 설정
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http.logout(auth -> auth
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+        );
+
+        return http.build();
     }
 }

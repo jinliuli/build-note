@@ -27,13 +27,13 @@ CREATE TABLE Users (
     userName VARCHAR2(50) NOT NULL,
     loginId VARCHAR2(50) NOT NULL,
     password VARCHAR2(100) NOT NULL,
-    phoneNumber VARCHAR2(50),
+    phoneNumber VARCHAR2(50) NOT NULL,
     role VARCHAR2(20) NOT NULL,
-    companyName VARCHAR2(50),
-    workType VARCHAR2(50),
-    teamName VARCHAR2(50),
-    jobType VARCHAR2(50),
-    isActive CHAR(1) NOT NULL CHECK (isActive IN ('Y', 'N'))
+    companyName VARCHAR2(50) NOT NULL,
+    workType VARCHAR2(50) NOT NULL,
+    teamName VARCHAR2(50) NOT NULL,
+    jobType VARCHAR2(50) NOT NULL,
+    isActive CHAR(1) DEFAULT 'Y' NOT NULL CHECK (isActive IN ('Y', 'N'))
 );
 
 -- 공사일지 기본정보 테이블
@@ -41,12 +41,12 @@ CREATE TABLE DailyReports (
     id NUMBER PRIMARY KEY,
     userId NUMBER REFERENCES Users(id),
     workType VARCHAR2(50) NOT NULL,
-    reportDate DATE NOT NULL,
+    reportDate DATE DEFAULT SYSDATE NOT NULL,
     timeType VARCHAR2(20) NOT NULL,
     locationType VARCHAR2(20) NOT NULL,
-    locationDetail VARCHAR2(1000),
-    content VARCHAR2(3000),
-    createdAt DATE NOT NULL,
+    locationDetail VARCHAR2(1000) NOT NULL,
+    content VARCHAR2(3000) NOT NULL,
+    createdAt DATE DEFAULT SYSDATE NOT NULL,
     updatedAt DATE,
     status VARCHAR2(20) NOT NULL
 );
@@ -113,9 +113,9 @@ CREATE TABLE Equipments (
     id NUMBER PRIMARY KEY,
     equipmentCode VARCHAR2(50) NOT NULL,
     equipmentName VARCHAR2(50) NOT NULL,
-    spec VARCHAR2(100),
-    brand VARCHAR2(50),
-    rentalCompany VARCHAR2(50),
+    spec VARCHAR2(100) NOT NULL,
+    brand VARCHAR2(50) NOT NULL,
+    rentalCompany VARCHAR2(50) NOT NULL,
     status VARCHAR2(50) NOT NULL,
     note VARCHAR2(3000)
 );
@@ -128,7 +128,7 @@ CREATE TABLE EquipmentTasks (
     taskLocation VARCHAR2(100) NOT NULL,
     startTime DATE NOT NULL,
     endTime DATE NOT NULL,
-    operatorName VARCHAR2(50) NOT NULL,
+    memberName VARCHAR2(50) NOT NULL,
     taskContent VARCHAR2(3000),
     note VARCHAR2(3000)
 );
@@ -137,7 +137,7 @@ CREATE TABLE EquipmentTasks (
 CREATE TABLE LossReports (
     id NUMBER PRIMARY KEY,
     reportId NUMBER REFERENCES DailyReports(id),
-    lossLocation VARCHAR2(1000),
+    lossLocation VARCHAR2(1000) NOT NULL,
     lossType VARCHAR2(50) NOT NULL,
     memberCount NUMBER NOT NULL,
     startTime DATE NOT NULL,
@@ -145,6 +145,7 @@ CREATE TABLE LossReports (
     note VARCHAR2(3000)
 );
 
+-- 시퀀스 생성
 CREATE SEQUENCE seqUsers; --(사용자)
 CREATE SEQUENCE seqDailyReports; --(공사일지)
 CREATE SEQUENCE seqReportMembers; --(팀원 출퇴근정보)

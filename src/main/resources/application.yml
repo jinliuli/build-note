@@ -2,30 +2,30 @@ spring:
     application:
         name: build-note
 
-#    # JDBC ??
-#    datasource:
-#        driver-class-name: oracle.jdbc.OracleDriver
-#        url: jdbc:oracle:thin:@localhost:1521/xe
-#        username: springboot
-#        password: java1234
-#
-#
-    # ?? ???? ??? ???.. (????? ??? ??? false?)
-    thymeleaf:
-       cache: false
-#
-#    # JPA ??
-#    jpa:
-#        database: oracle
-#        generate-ddl: false
-#        hibernate:
-#            ddl-auto: none
-#            naming:
-#                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#        show-sql: true # ?? ??? SQL? ??? ??
-#        properties:
-#            hibernate:
-#                format_sql: true # SQL? ??? ?????
+  # JDBC 설정
+    datasource:
+      url: jdbc:oracle-xe:thin:@localhost:1521:xe  # Oracle 데이터베이스의 URL
+      username: buildnote                    # Oracle DB 사용자 이름
+      password: java1234                    # Oracle DB 사용자 비밀번호
+      driver-class-name: oracle.jdbc.OracleDriver  # Oracle 드라이버 클래스
 
+
+  # 강력 새로고침 되도록 만드는.. (개발할때는 캐시를 꺼놓음 false로)
+    thymeleaf:
+      cache: false
+
+  # JPA 설정
+    jpa:
+      database: oracle
+      generate-ddl: false
+      hibernate:
+        ddl-auto: none  # 데이터베이스 자동 생성/업데이트 옵션
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      show-sql: true # 자동 생성된 SQL을 로그에 출력
+      database-platform: org.hibernate.dialect.Oracle12cDialect  # Oracle Dialect 사용
+      properties:
+        hibernate:
+          format_sql: true # SQL을 이쁘게 잘보이도록
 server:
     port: 8090
