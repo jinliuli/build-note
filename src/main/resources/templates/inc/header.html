@@ -23,10 +23,20 @@
             <!-- 사이드바 내부 내용 -->
             <h3>메뉴</h3>
             <ul>
-                <li><a href="#">홈</a></li>
-                <li><a href="#">공지사항</a></li>
-                <li><a href="#">고객센터</a></li>
-                <li><a href="#">로그인</a></li>
+                <li><a href="/static">홈</a></li>
+                <!--  팀장만 확인 가능  -->
+                <li><a href="/daily-report/create">오늘의 공사일지 작성</a></li>
+                <li><a href="/daily-report/list">작성된 일지 목록</a></li>
+                <!--  관리자만 확인 가능  -->
+                <li><a href="/admin/reports">공사 일지 조회</a></li>
+                <li><a href="/admin/workers">작업자 / 팀 관리</a></li>
+                <li><a href="/admin/progress">공정 관리 리포트</a></li>
+                <!--  전체 확인 가능  -->
+                <li><a href="/join">회원가입</a></li>
+                <li><a href="/login">로그인</a></li>
+                <!--  팀장,관리자 확인 가능  -->
+                <li><a href="/logout">로그아웃</a></li>
+                <li><a href="/my">내 정보</a></li>
             </ul>
         </div>
     </div>

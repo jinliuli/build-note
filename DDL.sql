@@ -30,8 +30,8 @@ CREATE TABLE Users (
     phoneNumber VARCHAR2(50) NOT NULL,
     role VARCHAR2(20) NOT NULL,
     companyName VARCHAR2(50) NOT NULL,
-    workType VARCHAR2(50) NOT NULL,
-    teamName VARCHAR2(50) NOT NULL,
+--    workType VARCHAR2(50) NOT NULL,
+    department VARCHAR2(50) NOT NULL,
     jobType VARCHAR2(50) NOT NULL,
     isActive CHAR(1) DEFAULT 'Y' NOT NULL CHECK (isActive IN ('Y', 'N'))
 );

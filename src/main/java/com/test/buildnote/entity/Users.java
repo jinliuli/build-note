@@ -8,18 +8,18 @@ import lombok.*;
 @Getter
 @ToString
 @Builder
-//@Table(name = "Users")
+@Table(name = "Users")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq_generator")
-    @SequenceGenerator(name="users_seq_generator", sequenceName = "seqUsers", allocationSize = 1)
+    @SequenceGenerator(name="users_seq_generator", sequenceName = "SEQUSERS", allocationSize = 1)
     private Long id;
 
     @Column(unique =  true, nullable = false)
-    private String username;
+    private String userName;
 
     @Column(nullable = false)
     private String loginId;
@@ -37,13 +37,10 @@ public class Users {
     private String companyName;
 
     @Column(nullable = false)
-    private String workType;
+    private String department;
 
     @Column(nullable = false)
-    private String teamName;
-
-    @Column(nullable = false)
-    private String jopType;
+    private String jobType;
 
     @Column(nullable = false)
     private String isActive;

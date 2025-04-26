@@ -17,7 +17,8 @@ public class SecurityConfig {
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/join", "/joinok").permitAll()
                 .requestMatchers("/my").hasAnyRole("TEAM_LEADER", "ADMIN")
-                .requestMatchers("/admin").hasRole("ADMIN")
+                .requestMatchers("/daily-report/**").hasRole("TEAM_LEADER")
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated() //나머지 경로 > 인증된 사용자만
         );
         //CSRF 토큰 해제
@@ -29,6 +30,12 @@ public class SecurityConfig {
                 .loginPage("/login")//사용자 로그인페이지 URL
                 .defaultSuccessUrl("/")
                 .loginProcessingUrl("/loginok").permitAll()
+        );
+
+        //로그아웃
+        http.logout(auth -> auth  // 기존 securityFilterChain 내용 통합
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
         );
 
 

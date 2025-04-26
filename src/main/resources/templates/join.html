@@ -12,23 +12,33 @@
     <div class="page-name">회원가입</div>
 
     <!-- 회원가입 폼 -->
-    <form class="signup-form">
-        <select required>
-            <option value="">계정 유형 선택</option>
-            <option value="team">팀장</option>
-            <option value="admin">관리자</option>
+    <form class="signup-form" action="/joinok" method="post">
+        <select name="role" required>
+            <option value="TEAM_LEADER">팀장</option>
+            <option value="ADMIN">관리자</option>
         </select>
-        <input type="text" placeholder="이름" required />
-        <input type="text" placeholder="아이디" required />
-        <input type="password" placeholder="비밀번호" required />
-        <input type="password" placeholder="비밀번호 확인" required />
-        <input type="text" placeholder="전화번호" required />
-        <input type="email" placeholder="이메일" required />
-        <input type="text" placeholder="팀명" required />
-        <input type="text" placeholder="부서" required />
+        <input type="text" name="userName" placeholder="이름" required />
+        <input type="text" name="loginId" placeholder="아이디" required />
+        <input type="password" name="password" placeholder="비밀번호" required />
+        <input type="password" name="passwordConfirm" placeholder="비밀번호 확인" required />
+        <input type="text" name="phoneNumber" placeholder="전화번호" required />
+        <input type="text" name="companyName" placeholder="회사명" required />
+        <input type="text" name="department" placeholder="부서 or 팀명" required />
+        <input type="text" name="jobType" placeholder="직종" required />
         <button type="submit">회원가입</button>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
     </form>
 </div>
+<script>
+    document.querySelector('form').onsubmit = function(e) {
+        const pw = document.querySelector('input[name="password"]').value;
+        const pw2 = document.querySelector('input[name="passwordConfirm"]').value;
+        if (pw !== pw2) {
+            alert('비밀번호가 일치하지 않습니다.');
+            e.preventDefault();
+        }
+    };
+</script>
 <script th:inline="javascript">
 </script>
 <th:block th:insert="~{inc/scripts.html :: scripts}"></th:block>

@@ -16,9 +16,8 @@ public class UsersDTO {
     private String phoneNumber;
     private String role;
     private String companyName;
-    private String workType;
-    private String teamName;
-    private String jopType;
+    private String department;
+    private String jobType;
     private String isActive;
 
 }
