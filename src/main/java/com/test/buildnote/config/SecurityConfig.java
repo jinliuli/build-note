@@ -25,14 +25,12 @@ public class SecurityConfig {
         //CSRF 토큰 해제
         //http.csrf(auth -> auth.disable());
 
-
         //커스텀 로그인 설정
         http.formLogin(auth -> auth
                 .loginPage("/login")//사용자 로그인페이지 URL
                 .defaultSuccessUrl("/")
                 .loginProcessingUrl("/loginok").permitAll()
         );
-
         //로그아웃
         http.logout(auth -> auth  // 기존 securityFilterChain 내용 통합
                 .logoutUrl("/logout")

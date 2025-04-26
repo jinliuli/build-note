@@ -14,7 +14,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
-
+        System.out.println("로그인된거야?");
         return "login";
     }
 
