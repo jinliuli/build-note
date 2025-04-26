@@ -4,7 +4,7 @@ spring:
 
   # JDBC 설정
     datasource:
-      url: jdbc:oracle-xe:thin:@localhost:1521:xe  # Oracle 데이터베이스의 URL
+      url: jdbc:oracle:thin:@//localhost:1521/XEPDB1  # Oracle 데이터베이스의 URL
       username: buildnote                    # Oracle DB 사용자 이름
       password: java1234                    # Oracle DB 사용자 비밀번호
       driver-class-name: oracle.jdbc.OracleDriver  # Oracle 드라이버 클래스
@@ -23,9 +23,10 @@ spring:
         naming:
           physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       show-sql: true # 자동 생성된 SQL을 로그에 출력
-      database-platform: org.hibernate.dialect.Oracle12cDialect  # Oracle Dialect 사용
+      database-platform: org.hibernate.dialect.OracleDialect  # Oracle Dialect 사용
       properties:
         hibernate:
+          # dialect 설정 제거 (중복 설정 방지)
           format_sql: true # SQL을 이쁘게 잘보이도록
 server:
     port: 8090

@@ -42,15 +42,15 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    //로그아웃 설정
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        http.logout(auth -> auth
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-        );
-
-        return http.build();
-    }
+//    //로그아웃 설정
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//
+//        http.logout(auth -> auth
+//                .logoutUrl("/logout")
+//                .logoutSuccessUrl("/")
+//        );
+//
+//        return http.build();
+//    }
 }
