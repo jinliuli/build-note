@@ -19,6 +19,7 @@ public class SecurityConfig {
                 .requestMatchers("/my").hasAnyRole("TEAM_LEADER", "ADMIN")
                 .requestMatchers("/daily-report/**").hasRole("TEAM_LEADER")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .anyRequest().authenticated() //나머지 경로 > 인증된 사용자만
         );
         //CSRF 토큰 해제

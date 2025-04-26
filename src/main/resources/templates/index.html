@@ -3,23 +3,20 @@
         xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
-<head>
-    <meta charset="UTF-8">
-    <title>Build-Note</title>
-    <style>
-
-    </style>
-</head>
+<head th:replace="~{inc/head.html :: head}"></head>
 <body>
+<div class="container">
+    <!-- 헤더 불러오기 -->
     <th:block th:insert="~{inc/header.html :: header}"></th:block>
-    <h2>Index</h2>
-
-    <div>시작 페이지</div>
+    <!-- 페이지 이름 -->
+    <div class="page-name">Index</div>
 
     <!--/*
      <div>username: <span sec:authentication="name"></span></div>
 
     <div class="message">pricipal: <span sec:authentication="principal.member"></span></div>
     */-->
+</div>
+    <th:block th:insert="~{inc/scripts.html :: scripts}"></th:block>
 </body>
 </html>

@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #eaeaea;
+    background-color: var(--background-color);
 }
 
 .logo {
@@ -28,7 +28,7 @@
     font-size: 24px;
     font-weight: bold;
     color: #333;
-    background-color: #fff; /* 배경 흰색이면 잘 보임 */
+    background-color: var(--card-background); /* 배경 흰색이면 잘 보임 */
 }
 
 
@@ -39,7 +39,7 @@
     right: -240px; /* 처음엔 화면 밖에 있음 */
     width: 240px;
     height: 100%;
-    background-color: #333;
+    background-color: var(--secondary-color);
     color: #fff;
     padding: 20px;
     transition: right 0.3s ease;
@@ -68,15 +68,7 @@
     color: #fff;
     text-decoration: none;
 }
-/* X 버튼 스타일 - 하얀색 + 크기 조절 */
-.close-btn {
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 16px;
-}
+
 
 /* 오버레이 배경 */
 .overlay {
@@ -110,7 +102,7 @@ section > div {
     position: absolute;
     width: 100%;
     height: 20%;
-    background-color: #2563EB;
+    background-color: var(--text-color);
     transition: all var(--rotate-icon);
 }
 
@@ -139,17 +131,20 @@ section > div:nth-of-type(3) {
 section.active > div:nth-of-type(2) {
     transform:rotate(45deg);
     width: 70.5%;
+    background-color: var(--card-background);
 }
 
 section.active > div:nth-of-type(3) {
     top: 40%;
     transform:rotate(-45deg);
     width: 70.5%;
+    background-color: var(--card-background);
 }
 
 section.active > div:nth-of-type(1) {
     left: 40%;
     right: 40%;
     height: 100%;
+    background-color: var(--card-background);
     transition: all var(--rotate-icon), left calc(var(--rotate-icon) / 2) 0s, right calc(var(--rotate-icon) / 2) 0s, height calc(var(--rotate-icon) / 2) calc(var(--rotate-icon) / 2);
 }
