@@ -28,8 +28,11 @@ public class SecurityConfig {
         //커스텀 로그인 설정
         http.formLogin(auth -> auth
                 .loginPage("/login")//사용자 로그인페이지 URL
-                .defaultSuccessUrl("/")
-                .loginProcessingUrl("/loginok").permitAll()
+                .usernameParameter("loginId")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/") // 로그인 성공 시 이동할 URL
+                .loginProcessingUrl("/loginok")
+                .permitAll()
         );
         //로그아웃
         http.logout(auth -> auth  // 기존 securityFilterChain 내용 통합

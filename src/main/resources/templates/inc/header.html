@@ -7,7 +7,7 @@
 <header th:fragment="header">
     <!-- 상단 로고 + 메뉴 아이콘 -->
     <div class="header">
-        <div class="logo">Build-Note</div>
+        <div class="logo" onclick="location.href='/'">Build-Note</div>
         <div class="menu-icon" onclick="toggleSidebar()">
             <section id="menuIcon">
                 <div></div>
@@ -21,16 +21,16 @@
         <!--  사이드바 메뉴  -->
         <div id="sidebar" class="sidebar" onclick="event.stopPropagation();">
             <!-- 사이드바 내부 내용 -->
-            <h3>메뉴</h3>
+            <br>
             <ul>
                 <li><a href="/static">홈</a></li>
                 <!--  팀장만 확인 가능  -->
-                <li><a href="/daily-report/create">오늘의 공사일지 작성</a></li>
-                <li><a href="/daily-report/list">작성된 일지 목록</a></li>
+                <li><a href="/daily-report/create">오늘의 작업일보 작성</a></li>
+                <li><a href="/daily-report/list">내가 작성한 작업일보</a></li>
                 <!--  관리자만 확인 가능  -->
-                <li><a href="/admin/reports">공사 일지 조회</a></li>
-                <li><a href="/admin/workers">작업자 / 팀 관리</a></li>
-                <li><a href="/admin/progress">공정 관리 리포트</a></li>
+                <li><a href="/admin/reports">전체 작업일보 조회</a></li>
+<!--                <li><a href="/admin/workers">작업자 / 팀 관리</a></li>-->
+<!--                <li><a href="/admin/progress">공정 관리 리포트</a></li>-->
                 <!--  전체 확인 가능  -->
                 <li><a href="/join">회원가입</a></li>
                 <li><a href="/login">로그인</a></li>
