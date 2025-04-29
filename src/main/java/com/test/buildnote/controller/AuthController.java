@@ -13,9 +13,12 @@ import jakarta.servlet.http.HttpServletResponse;
 public class AuthController {
 
     @GetMapping("/login")
-    public String login() {
-        System.out.println("로그인된거야?");
-        return "login";
+    public String login(HttpServletRequest request) {
+        System.out.println("로그인된거야? -> URI: " + request.getRequestURI());
+//        System.out.println("Referer: " + request.getHeader("Referer"));
+//        System.out.println("User-Agent: " + request.getHeader("User-Agent"));
+
+        return "/login";
     }
 
     @GetMapping("/logout")

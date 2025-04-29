@@ -19,7 +19,7 @@ public class SecurityConfig {
                 .requestMatchers("/my").hasAnyRole("TEAM_LEADER", "ADMIN")
                 .requestMatchers("/daily-report/**").hasRole("TEAM_LEADER")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "/favicon.ico").permitAll()
                 .anyRequest().authenticated() //나머지 경로 > 인증된 사용자만
         );
         //CSRF 토큰 해제
@@ -27,18 +27,18 @@ public class SecurityConfig {
 
         //커스텀 로그인 설정
         http.formLogin(auth -> auth
-                .loginPage("/login")//사용자 로그인페이지 URL
-                .usernameParameter("loginId")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/") // 로그인 성공 시 이동할 URL
+                .loginPage("/login")
                 .loginProcessingUrl("/loginok")
+                .usernameParameter("loginId") // << 여기!
+                .passwordParameter("password") // 생략 가능, 기본값 그대로면
+                .defaultSuccessUrl("/", true)
                 .permitAll()
         );
-        //로그아웃
-        http.logout(auth -> auth  // 기존 securityFilterChain 내용 통합
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-        );
+//        //로그아웃
+//        http.logout(auth -> auth  // 기존 securityFilterChain 내용 통합
+//                .logoutUrl("/logout")
+//                .logoutSuccessUrl("/")
+//        );
 
 
         return http.build();

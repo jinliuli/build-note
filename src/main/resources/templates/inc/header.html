@@ -25,20 +25,31 @@
             <!-- 사이드바 내부 내용 -->
             <br>
             <ul>
-                <li><a href="/static">홈</a></li>
-                <!--  팀장만 확인 가능  -->
+                <!--  전체 확인 가능  -->
+                <th:block sec:authorize="isAnonymous()">
+                    <li><a href="/">홈</a></li>
+                </th:block>
+
+                <!--  팀장만 확인 가능  <li sec:authorize="hasRole('TEAM_LEADER')">-->
                 <li><a href="/daily-report/create">오늘의 작업일보 작성</a></li>
                 <li><a href="/daily-report/list">내가 작성한 작업일보</a></li>
-                <!--  관리자만 확인 가능  -->
+
+                <!--  관리자만 확인 가능  <li sec:authorize="hasRole('ADMIN')">-->
                 <li><a href="/admin/reports">전체 작업일보 조회</a></li>
 <!--                <li><a href="/admin/workers">작업자 / 팀 관리</a></li>-->
 <!--                <li><a href="/admin/progress">공정 관리 리포트</a></li>-->
+
                 <!--  전체 확인 가능  -->
-                <li><a href="/join">회원가입</a></li>
-                <li><a href="/login">로그인</a></li>
+                <th:block sec:authorize="isAnonymous()">
+                    <li><a href="/join">회원가입</a></li>
+                    <li><a href="/login">로그인</a></li>
+                </th:block>
+
                 <!--  팀장,관리자 확인 가능  -->
-                <li><a href="/logout">로그아웃</a></li>
-                <li><a href="/my">내 정보</a></li>
+                <th:block sec:authorize="isAuthenticated()">
+                    <li><a href="/logout">로그아웃</a></li>
+                    <li><a href="/my">내 정보</a></li>
+                </th:block>
             </ul>
         </div>
     </div>
