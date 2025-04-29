@@ -4,13 +4,44 @@
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 <head th:replace="~{inc/head.html :: head}"></head>
+<style>
+    /* 메인 컨테이너 전체화면 채우기 */
+    .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5;
+        margin: 0;
+    }
+
+    /* 로고 이미지 스타일 + 페이드인 애니메이션 추가 */
+    .main-logo {
+        width: 80%;
+        max-width: 300px;
+        height: auto;
+        opacity: 0; /* 처음엔 투명 */
+        animation: fadeIn 1s ease-in forwards; /* 1초 동안 부드럽게 나타남 */
+    }
+
+    /* fadeIn 애니메이션 정의 */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
 <body>
 <div class="container">
     <!-- 헤더 불러오기 -->
     <th:block th:insert="~{inc/header.html :: header}"></th:block>
     <!-- 페이지 이름 -->
-    <div class="page-name" style="text-align: center">Build Note</div>
-
+    <div class="main-container">
+        <img class="main-logo" src="/images/LogoBig.png" alt="Build-Note Logo" onclick="location.href='/'">
+    </div>
     <!--/*
      <div>username: <span sec:authentication="name"></span></div>
 
