@@ -13,14 +13,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/").permitAll() //요청하는 URI 패턴과 모든 사람들이 들어와서 볼수있도록
-                .requestMatchers("/login").permitAll()
-                .requestMatchers("/join", "/joinok").permitAll()
-                .requestMatchers("/my").hasAnyRole("TEAM_LEADER", "ADMIN")
+                // 공개 리소스
+                .requestMatchers("/", "/home", "/login", "/join", "/css/**", "/js/**", "/images/**").permitAll()
+                // 인증된 사용자만 접근 가능한 페이지
+                .requestMatchers("/my").authenticated() // 내 정보 페이지는 로그인한 모든 사용자에게 허용
+                // 팀장 권한 필요
                 .requestMatchers("/daily-report/**").hasRole("TEAM_LEADER")
+                // 관리자 권한 필요
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "/favicon.ico").permitAll()
-                .anyRequest().authenticated() //나머지 경로 > 인증된 사용자만
+                // 그 외 모든 요청은 인증 필요
+                .anyRequest().authenticated()
         );
         //CSRF 토큰 해제
         //http.csrf(auth -> auth.disable());
@@ -33,12 +35,13 @@ public class SecurityConfig {
                 .passwordParameter("password") // 생략 가능, 기본값 그대로면
                 .defaultSuccessUrl("/", true)
                 .permitAll()
+        )
+
+        //로그아웃
+        .logout(logout -> logout
+                .logoutSuccessUrl("/")
+                .permitAll()
         );
-//        //로그아웃
-//        http.logout(auth -> auth  // 기존 securityFilterChain 내용 통합
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/")
-//        );
 
 
         return http.build();

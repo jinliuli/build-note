@@ -30,11 +30,11 @@
                     <li><a href="/">홈</a></li>
                 </th:block>
 
-                <!--  팀장만 확인 가능  <li sec:authorize="hasRole('TEAM_LEADER')">-->
+                <!--  팀장만 확인 가능  <li sec:authorize="hasRole('ROLE_TEAM_LEADER')">-->
                 <li><a href="/daily-report/create">오늘의 작업일보 작성</a></li>
                 <li><a href="/daily-report/list">내가 작성한 작업일보</a></li>
 
-                <!--  관리자만 확인 가능  <li sec:authorize="hasRole('ADMIN')">-->
+                <!--  관리자만 확인 가능  <li sec:authorize="hasRole('ROLE_ADMIN')">-->
                 <li><a href="/admin/reports">전체 작업일보 조회</a></li>
 <!--                <li><a href="/admin/workers">작업자 / 팀 관리</a></li>-->
 <!--                <li><a href="/admin/progress">공정 관리 리포트</a></li>-->
