@@ -150,7 +150,6 @@
 
         <!-- 사용자 정보 표시 -->
         <div class="profile-section user-info">
-            <h3>사용자 정보</h3>
 
             <div class="profile-header">
                 <div class="profile-img">
@@ -176,7 +175,7 @@
                     <div class="info-value" th:text="${#authentication.authorities[0].authority}">ROLE_USER</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">마지막 로그인</div>
+                    <div class="info-label">접속 시간</div>
                     <div class="info-value">2025-05-02 15:30</div>
                 </div>
             </div>
