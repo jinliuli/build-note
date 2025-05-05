@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head th:replace="~{inc/head.html :: head}"></head>
+<body>
+<div class="container">
+    <!-- 헤더 불러오기 -->
+    <th:block th:insert="~{inc/header.html :: header}"></th:block>
+    <!-- 페이지 이름 -->
+    <div class="page-name">작업자-내 작업일보 목록</div>
+
+</div>
+<th:block th:insert="~{inc/scripts.html :: scripts}"></th:block>
+</body>
+</html>

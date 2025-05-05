@@ -13,14 +13,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                // 공개 리소스
-                .requestMatchers("/", "/home", "/login", "/join", "/css/**", "/js/**", "/images/**").permitAll()
-                // 인증된 사용자만 접근 가능한 페이지
-                .requestMatchers("/my").authenticated() // 내 정보 페이지는 로그인한 모든 사용자에게 허용
-                // 팀장 권한 필요
-                .requestMatchers("/daily-report/**").hasRole("TEAM_LEADER")
-                // 관리자 권한 필요
-                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/", "/home", "/login", "/join", "/css/**", "/js/**", "/images/**", "/my", "/member/**", "/admin/**").permitAll()
+//                // 공개 리소스
+//                .requestMatchers("/", "/home", "/login", "/join", "/css/**", "/js/**", "/images/**").permitAll()
+//                // 인증된 사용자만 접근 가능한 페이지
+//                .requestMatchers("/my").authenticated() // 내 정보 페이지는 로그인한 모든 사용자에게 허용
+//                // 팀장 권한 필요
+//                .requestMatchers("/member/**").hasRole("MEMBER")
+//                // 관리자 권한 필요
+//                .requestMatchers("/admin/**").hasRole("ADMIN")
                 // 그 외 모든 요청은 인증 필요
                 .anyRequest().authenticated()
         );
